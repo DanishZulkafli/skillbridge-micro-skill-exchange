@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SkillBridge - Micro Skill Exchange Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Community Skill Exchange Project</span>
+        <h1>SkillBridge</h1>
+        <p>
+          Offer your skills, request help from others, discover possible matches,
+          and build a community-powered learning network.
+        </p>
+
+        <div class="hero-actions">
+          <button onclick="scrollToForms()">Add Skill Offer</button>
+          <button class="ghost" onclick="exportCSV()">Export CSV</button>
+          <button class="danger" onclick="resetData()">Reset Data</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <span>Community Status</span>
+        <h2 id="communityRank">Starter Network</h2>
+        <p id="communityPoints">0 exchange points</p>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span>Total Offers</span>
+        <strong id="totalOffers">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Total Requests</span>
+        <strong id="totalRequests">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Possible Matches</span>
+        <strong id="totalMatches">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <span>Categories</span>
+        <strong id="totalCategories">0</strong>
+      </div>
+    </section>
+
+    <section class="layout" id="forms">
+      <div class="panel">
+        <h2>Offer a Skill</h2>
+
+        <label for="offerName">Your Name</label>
+        <input id="offerName" type="text" placeholder="Example: Danish" />
+
+        <label for="offerTitle">Skill Offer Title</label>
+        <input id="offerTitle" type="text" placeholder="Example: I can teach GitHub basics" />
+
+        <label for="offerCategory">Category</label>
+        <select id="offerCategory">
+          <option>Web Development</option>
+          <option>Design</option>
+          <option>Resume Review</option>
+          <option>Data Science</option>
+          <option>Writing</option>
+          <option>Productivity</option>
+          <option>Tech Support</option>
+          <option>Study Help</option>
+        </select>
+
+        <label for="offerKeywords">Skill Keywords</label>
+        <input id="offerKeywords" type="text" placeholder="Example: github, html, website" />
+
+        <label for="offerAvailability">Availability</label>
+        <select id="offerAvailability">
+          <option>Weekday</option>
+          <option>Weekend</option>
+          <option>Flexible</option>
+        </select>
+
+        <label for="offerDescription">Description</label>
+        <textarea id="offerDescription" placeholder="Briefly explain how you can help..."></textarea>
+
+        <button onclick="addOffer()">Add Skill Offer</button>
+      </div>
+
+      <div class="panel">
+        <h2>Request Help</h2>
+
+        <label for="requestName">Your Name</label>
+        <input id="requestName" type="text" placeholder="Example: Student A" />
+
+        <label for="requestTitle">Help Request Title</label>
+        <input id="requestTitle" type="text" placeholder="Example: Need help with portfolio website" />
+
+        <label for="requestCategory">Category</label>
+        <select id="requestCategory">
+          <option>Web Development</option>
+          <option>Design</option>
+          <option>Resume Review</option>
+          <option>Data Science</option>
+          <option>Writing</option>
+          <option>Productivity</option>
+          <option>Tech Support</option>
+          <option>Study Help</option>
+        </select>
+
+        <label for="requestKeywords">Needed Keywords</label>
+        <input id="requestKeywords" type="text" placeholder="Example: github, portfolio, css" />
+
+        <label for="requestUrgency">Urgency</label>
+        <select id="requestUrgency">
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+
+        <label for="requestDescription">Description</label>
+        <textarea id="requestDescription" placeholder="Briefly explain what help you need..."></textarea>
+
+        <button onclick="addRequest()">Add Help Request</button>
+      </div>
+    </section>
+
+    <section class="layout second">
+      <div class="panel">
+        <h2>AI-Style Match Suggestions</h2>
+        <p class="muted">
+          Matches are calculated using category similarity, keyword overlap, urgency, and availability.
+        </p>
+
+        <div id="matchesList">
+          <div class="empty-box">
+            <h3>No matches yet</h3>
+            <p>Add at least one offer and one request to generate matches.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Skill Category Breakdown</h2>
+        <div id="categoryBreakdown">
+          <p class="muted">No category data yet.</p>
+        </div>
+
+        <div class="ai-box">
+          <h3>AI-Style Community Insight</h3>
+          <p id="communityInsight">
+            Start by adding one skill offer and one help request to activate the exchange network.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="history-section">
+      <div class="history-header">
+        <div>
+          <h2>Community Board</h2>
+          <p>Search and filter all skill offers and help requests.</p>
+        </div>
+
+        <div class="filters">
+          <input id="searchInput" type="text" placeholder="Search board..." oninput="renderApp()" />
+
+          <select id="filterType" onchange="renderApp()">
+            <option>All</option>
+            <option>Offer</option>
+            <option>Request</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="boardList" class="board-grid">
+        <div class="empty-box wide">
+          <h3>No board items yet</h3>
+          <p>Add a skill offer or help request to start.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
